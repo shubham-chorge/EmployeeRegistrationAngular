@@ -1,0 +1,175 @@
+<div class="row justify-content-center">
+  <div class="col-md-4 col-xs-12">
+    <div class="card shadow p-4 mb-5 bg-white rounded">
+      <div class="col-md-12 col-xs-12">
+        <form name="empform" [formGroup]="empform">
+          <div class="col-md-12">
+            <h3>Employee Registration</h3>
+          </div>
+          <div class="col-md-12" style="margin-top: 20px">
+            <label for="empNo">Employee Number </label>
+            <input
+              type="phone"
+              maxlength="10"
+              class="form-control"
+              formControlName="employeeNo"
+              [(ngModel)]="formData.employeeNo"
+              placeholder="No"
+              required
+            />
+            <p
+              class="alert alert-danger"
+              *ngIf="empform.controls['employeeNo'].hasError('maxlength')"
+            >
+              Your Employee Number cannot exceed 10 digits.
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="empform.controls['employeeNo'].hasError('pattern')"
+            >
+              Your Employee Number should be in digits/Number only.
+            </p>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                empform.controls['employeeNo'].hasError('required') &&
+                empform.controls['employeeNo'].dirty
+              "
+            >
+              <label class="validation-message">This field is required.</label>
+            </div>
+          </div>
+          <div class="col-md-12" style="margin-top: 20px">
+            <label for="empName">Employee Name </label>
+            <input
+              type="text"
+              maxlength="100"
+              class="form-control"
+              formControlName="employeeName"
+              [(ngModel)]="formData.employeeName"
+              placeholder="Name"
+              required
+            />
+            <p
+              class="alert alert-danger"
+              *ngIf="empform.controls['employeeName'].hasError('maxlength')"
+            >
+              Your Employee Name cannot exceed 100 characters.
+            </p>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                empform.controls['employeeName'].hasError('required') &&
+                empform.controls['employeeName'].dirty
+              "
+            >
+              <label class="validation-message">This field is required.</label>
+            </div>
+          </div>
+          <div class="col-md-12" style="margin-top: 20px">
+            <label for="doj">Date </label>
+            <input
+              type="date"
+              maxlength="10"
+              class="form-control"
+              formControlName="date_of_joining"
+              [(ngModel)]="formData.date_of_joining"
+              placeholder="Date"
+              required
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                empform.controls['date_of_joining'].hasError('required') &&
+                empform.controls['date_of_joining'].dirty
+              "
+            >
+              <label class="validation-message">This field is required.</label>
+            </div>
+          </div>
+          <div class="col-md-12" style="margin-top: 20px">
+            <label for="department">Department </label>
+            <select
+              id="department"
+              name="department"
+              formControlName="department"
+              maxlength="2"
+              class="form-control"
+              [(ngModel)]="formData.department"
+              placeholder="Department"
+              required
+            >
+              <option value="-1" disabled="true" [selected]="true">
+                select department
+              </option>
+              <option [ngValue]="dep.code" *ngFor="let dep of departmentList">
+                {{ dep.description }}
+              </option>
+            </select>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                empform.controls['department'].hasError('required') &&
+                empform.controls['department'].dirty
+              "
+            >
+              <label class="validation-message">This field is required.</label>
+            </div>
+          </div>
+          <div class="col-md-12" style="margin-top: 20px">
+            <label for="salary">Salary </label>
+            <input
+              type="phone"
+              maxlength="10"
+              class="form-control"
+              formControlName="salary"
+              [(ngModel)]="formData.salary"
+              placeholder="Salary"
+              required
+            />
+            <p
+              class="alert alert-danger"
+              *ngIf="empform.controls['salary'].hasError('maxlength')"
+            >
+              Your Salary cannot exceed 10 digits.
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="empform.controls['salary'].hasError('pattern')"
+            >
+              Your Salary should be in digits/Number only.
+            </p>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                empform.controls['salary'].hasError('required') &&
+                empform.controls['salary'].dirty
+              "
+            >
+              <label class="validation-message">This field is required.</label>
+            </div>
+          </div>
+        </form>
+        <div class="btn">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            style="margin-right: 0.8rem"
+            (click)="resetForm()"
+          >
+            Clear
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            style="margin-right: 0.8rem"
+            (click)="onSubmit()"
+            [disabled]="!empform.valid"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
